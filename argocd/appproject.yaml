@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: messager
+  namespace: argocd
+spec:
+  description: Messager lab project
+  sourceRepos:
+    - https://github.com/mrsskaa/laba_IPR_2sem.git
+  destinations:
+    - namespace: messager-dev
+      server: https://kubernetes.default.svc
+    - namespace: messager-prod
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
+    - group: ""
+      kind: PersistentVolume
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"

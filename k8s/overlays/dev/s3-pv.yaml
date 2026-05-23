@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: s3-pv-messager-dev-uploads
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem
+  persistentVolumeReclaimPolicy: Retain
+  mountOptions:
+    - allow-delete
+    - region=us-east-1
+    - url=http://minio.messager-dev.svc.cluster.local:9000
+    - use_path_request_style
+  csi:
+    driver: ch.ctrox.csi.s3-driver
+    volumeHandle: messager-dev-uploads-volume
+    nodePublishSecretRef:
+      name: csi-s3-secret
+      namespace: messager-dev
+    volumeAttributes:
+      bucketName: messager-uploads-dev
+      mounter: rclone

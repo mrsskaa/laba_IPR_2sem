@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: message-uploads-pvc
+spec:
+  storageClassName: ""
+  volumeName: s3-pv-messager-dev-uploads

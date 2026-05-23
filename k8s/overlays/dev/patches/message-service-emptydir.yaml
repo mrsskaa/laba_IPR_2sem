@@ -1,0 +1,5 @@
+- op: replace
+  path: /spec/template/spec/volumes
+  value:
+    - name: uploads
+      emptyDir: {}
